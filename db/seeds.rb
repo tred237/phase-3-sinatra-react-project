@@ -1,7 +1,7 @@
 puts "🌱 Seeding spices..."
 
-# User.create(name: 'Jane')
-# User.create(name: 'Mike')
+User.create(name: 'Jane')
+User.create(name: 'Mike')
 
 Exercise.create(exercise_name: 'Bench Press', body_part: 'Chest', description: 'Lay down on a bench. Lift the bar above your chest. Lower the bar to your chest, Push the bar back above your chest.')
 Exercise.create(exercise_name: 'Dumbbell Curls', body_part: 'Arms', description: 'Hold a dumbbell in each hand at your sides. Lift the one dumbbell to your shoulder. Lower the dumbell back down to your side. Repeat for each arm.')
