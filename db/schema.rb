@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_22_223116) do
+ActiveRecord::Schema.define(version: 2023_01_22_230209) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2023_01_22_223116) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "exercise"
-    t.string "body_part"
+    t.string "exercise_type"
     t.float "distance_miles"
     t.integer "length_of_time_minutes"
   end
