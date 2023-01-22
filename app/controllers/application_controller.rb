@@ -1,20 +1,32 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add your routes here
   get "/" do
     { message: "Trainer Catalog" }.to_json
   end
 
   get "/clients" do
-    User.all.to_json
+    Client.all.to_json
   end
 
   get "/exercises" do
-    Exercises.all.to_json
+    Exercise.all.to_json
   end
 
   get "/routines" do
     Routine.all.to_json
+  end
+
+  delete "/routines/:id" do
+    routine = Routine.find(params[:id])
+    routine.destroy
+    routine.to_json
+  end
+
+  delete "/exercises/:id" do
+    exercise = Exercise.find(params[:id])
+    Routine.where("exercise_id = #{params[:id]}").each{|e| e.destroy}
+    exercise.destroy
+    exercise.to_json
   end
 end
