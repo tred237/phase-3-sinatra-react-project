@@ -29,4 +29,11 @@ class ApplicationController < Sinatra::Base
     exercise.destroy
     exercise.to_json
   end
+
+  delete "/clients/:id" do
+    client = Client.find(params[:id])
+    Routine.where("client_id = #{params[:id]}").each{|e| e.destroy}
+    client.destroy
+    client.to_json
+  end
 end
