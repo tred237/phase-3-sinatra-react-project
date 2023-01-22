@@ -36,4 +36,12 @@ class ApplicationController < Sinatra::Base
     client.destroy
     client.to_json
   end
+
+  get "/routines/client_id=:id" do
+    Client.find(params[:id]).routines.to_json
+  end
+
+  post "/clients" do
+    Client.create(name: params[:name]).to_json
+  end
 end
