@@ -33,4 +33,14 @@ class ApplicationController < Sinatra::Base
   post "/clients" do
     Client.create(name: params[:name]).to_json
   end
+
+  post "/routines" do
+    Routine.create(day: params[:day], 
+                    sets: params[:sets], 
+                    reps: params[:reps], 
+                    exercise: params[:exercise], 
+                    exercise_type: params[:exercise_type], 
+                    distance_miles: params[:distance_miles], 
+                    length_of_time_minutes: params[:length_of_time_minutes]).to_json
+  end
 end
