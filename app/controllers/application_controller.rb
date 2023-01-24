@@ -43,4 +43,13 @@ class ApplicationController < Sinatra::Base
                     distance_miles: params[:distance_miles], 
                     length_of_time_minutes: params[:length_of_time_minutes]).to_json
   end
+
+  patch "/clients/:id" do
+    Client.find(params[:id]).update(name: params[:name]).to_json
+  end
+
+  patch "/routines/:id" do
+    routine = Routine.find(params[:id])
+    params.each{|key, value| routine.update(key => value).to_json if key != "id"}.to_json
+  end
 end
