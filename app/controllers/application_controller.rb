@@ -1,3 +1,7 @@
+# link routines to client but everything on page load useEffect
+# store in state and access state for routines route instead of having as many routes
+
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -6,7 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/clients" do
-    Client.all.to_json
+    Client.all.to_json(include: :routines)
   end
 
   get "/routines" do
@@ -41,7 +45,8 @@ class ApplicationController < Sinatra::Base
                     exercise: params[:exercise], 
                     exercise_type: params[:exercise_type], 
                     distance_miles: params[:distance_miles], 
-                    length_of_time_minutes: params[:length_of_time_minutes]).to_json
+                    length_of_time_minutes: params[:length_of_time_minutes]
+                    client_id: params[:client_id]).to_json
   end
 
   patch "/clients/:id" do
