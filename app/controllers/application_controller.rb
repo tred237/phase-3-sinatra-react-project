@@ -1,7 +1,3 @@
-# link routines to client but everything on page load useEffect
-# store in state and access state for routines route instead of having as many routes
-
-
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
