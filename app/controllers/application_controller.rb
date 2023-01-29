@@ -13,10 +13,6 @@ class ApplicationController < Sinatra::Base
     Client.all.to_json(include: :routines)
   end
 
-  get "/routines" do
-    Routine.all.to_json
-  end
-
   delete "/routines/:id" do
     routine = Routine.find(params[:id])
     routine.destroy
@@ -30,7 +26,7 @@ class ApplicationController < Sinatra::Base
     client.to_json
   end
 
-  get "/routines/client_id=:id" do
+  get "/routines/:id" do
     Client.find(params[:id]).routines.to_json
   end
 
@@ -45,7 +41,7 @@ class ApplicationController < Sinatra::Base
                     exercise: params[:exercise], 
                     exercise_type: params[:exercise_type], 
                     distance_miles: params[:distance_miles], 
-                    length_of_time_minutes: params[:length_of_time_minutes]
+                    length_of_time_minutes: params[:length_of_time_minutes],
                     client_id: params[:client_id]).to_json
   end
 
