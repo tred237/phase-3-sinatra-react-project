@@ -22,7 +22,7 @@ class ApplicationController < Sinatra::Base
     client.to_json
   end
 
-  get "/routines/:id" do
+  get "/clients/:id/routines" do
     Client.find(params[:id]).routines.to_json
   end
 
