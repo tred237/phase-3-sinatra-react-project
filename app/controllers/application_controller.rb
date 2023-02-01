@@ -9,10 +9,8 @@ class ApplicationController < Sinatra::Base
     Client.all.to_json
   end
 
-  delete "/clients/:client_id/routines/:routine_id" do
-    routine = Routine.find(params[:routine_id])
-    routine.destroy
-    routine.to_json
+  get "/clients/:id/routines" do
+    Client.find(params[:id]).routines.to_json
   end
 
   delete "/clients/:id" do
@@ -22,15 +20,17 @@ class ApplicationController < Sinatra::Base
     client.to_json
   end
 
-  get "/clients/:id/routines" do
-    Client.find(params[:id]).routines.to_json
+  delete "/clients/:client_id/routines/:routine_id" do
+    routine = Routine.find(params[:routine_id])
+    routine.destroy
+    routine.to_json
   end
 
   post "/clients" do
     Client.create(name: params[:name]).to_json
   end
 
-  post "/routines" do
+  post "/clients/:id/routines" do
     Routine.create(day: params[:day], 
                     sets: params[:sets], 
                     reps: params[:reps], 
@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
                     exercise_type: params[:exercise_type], 
                     distance_miles: params[:distance_miles], 
                     length_of_time_minutes: params[:length_of_time_minutes],
-                    client_id: params[:client_id]).to_json
+                    client_id: params[:id]).to_json
   end
 
   patch "/clients/:id" do
