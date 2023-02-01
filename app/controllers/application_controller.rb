@@ -46,6 +46,7 @@ class ApplicationController < Sinatra::Base
   end
 
   patch "/clients/:client_id/routines/:routine_id" do
-    Routine.where("id = #{params[:routine_id]}").update_all(params.except("client_id", "routine_id")).to_json
+    routine = Routine.find(params[:routine_id])
+    routine.update(params.except("client_id", "routine_id")).to_json
   end
 end
