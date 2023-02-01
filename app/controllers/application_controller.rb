@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/clients" do
-    Client.all.to_json#(include: :routines)
+    Client.all.to_json
   end
 
   delete "/routines/:id" do
@@ -45,8 +45,7 @@ class ApplicationController < Sinatra::Base
     Client.find(params[:id]).update(name: params[:name]).to_json
   end
 
-  patch "/routines/:id" do
-    routine = Routine.find(params[:id])
-    params.each{|key, value| routine.update(key => value).to_json if key != "id"}.to_json
+  patch "/clients/:client_id/routines/:routine_id" do
+    Routine.where("id = #{params[:routine_id]}").update_all(params.except("client_id", "routine_id")).to_json
   end
 end
