@@ -9,8 +9,8 @@ class ApplicationController < Sinatra::Base
     Client.all.to_json
   end
 
-  delete "/routines/:id" do
-    routine = Routine.find(params[:id])
+  delete "/clients/:client_id/routines/:routine_id" do
+    routine = Routine.find(params[:routine_id])
     routine.destroy
     routine.to_json
   end
