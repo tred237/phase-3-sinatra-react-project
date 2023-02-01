@@ -6,7 +6,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/clients" do
-    Client.all.to_json(include: :routines)
+    Client.all.to_json#(include: :routines)
   end
 
   delete "/routines/:id" do
