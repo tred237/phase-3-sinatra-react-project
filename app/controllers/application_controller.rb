@@ -13,6 +13,10 @@ class ApplicationController < Sinatra::Base
     Client.find(params[:id]).routines.to_json
   end
 
+  get "/clients/:id/routines/summary_stats" do
+    Client.find(params[:id]).summary_stats.to_json
+  end
+
   delete "/clients/:id" do
     client = Client.find(params[:id])
     Routine.where("client_id = #{params[:id]}").each{|e| e.destroy}
