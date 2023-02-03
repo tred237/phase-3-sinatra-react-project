@@ -27,22 +27,22 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/clients" do
-    Client.create(name: params[:name]).to_json
+    Client.create(name: params[:name].split(' ').map{|i| i.capitalize}.join(" ")).to_json
   end
 
   post "/clients/:id/routines" do
-    Routine.create(day: params[:day], 
+    Routine.create(day: params[:day].split(' ').map{|i| i.capitalize}.join(" "), 
                     sets: params[:sets], 
                     reps: params[:reps], 
-                    exercise: params[:exercise], 
-                    exercise_type: params[:exercise_type], 
+                    exercise: params[:exercise].split(' ').map{|i| i.capitalize}.join(" "), 
+                    exercise_type: params[:exercise_type].split(' ').map{|i| i.capitalize}.join(" "), 
                     distance_miles: params[:distance_miles], 
                     length_of_time_minutes: params[:length_of_time_minutes],
                     client_id: params[:id]).to_json
   end
 
   patch "/clients/:id" do
-    Client.find(params[:id]).update(name: params[:name]).to_json
+    Client.find(params[:id]).update(name: params[:name].split(' ').map{|i| i.capitalize}.join(" ")).to_json
   end
 
   patch "/clients/:client_id/routines/:routine_id" do
