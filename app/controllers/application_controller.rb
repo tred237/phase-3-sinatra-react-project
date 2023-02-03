@@ -47,6 +47,12 @@ class ApplicationController < Sinatra::Base
 
   patch "/clients/:client_id/routines/:routine_id" do
     routine = Routine.find(params[:routine_id])
-    routine.update(params.except("client_id", "routine_id")).to_json
+    string_keys = ["day", "exercise", "exercise_type"]
+    
+    formatted_params = params.map do |key, value| 
+      string_keys.include?(key) ? [key, params[key].split(' ').map{|i| i.capitalize}.join(" ")] : [key, params[key]]
+    end.to_h
+    
+    routine.update(formatted_params.except("client_id", "routine_id")).to_json
   end
 end
