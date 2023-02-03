@@ -6,11 +6,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/clients" do
-    Client.all.to_json
-  end
-
-  get "/clients/:id/routines" do
-    Client.find(params[:id]).routines.to_json
+    Client.all.to_json(include: :routines)
   end
 
   get "/clients/:id/routines/summary_stats" do
