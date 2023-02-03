@@ -27,32 +27,26 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/clients" do
-    Client.create(name: params[:name].split(' ').map{|i| i.capitalize}.join(" ")).to_json
+    Client.create(name: params[:name]).to_json
   end
 
   post "/clients/:id/routines" do
-    Routine.create(day: params[:day].split(' ').map{|i| i.capitalize}.join(" "), 
+    Routine.create(day: params[:day], 
                     sets: params[:sets], 
                     reps: params[:reps], 
-                    exercise: params[:exercise].split(' ').map{|i| i.capitalize}.join(" "), 
-                    exercise_type: params[:exercise_type].split(' ').map{|i| i.capitalize}.join(" "), 
+                    exercise: params[:exercise], 
+                    exercise_type: params[:exercise_type], 
                     distance_miles: params[:distance_miles], 
                     length_of_time_minutes: params[:length_of_time_minutes],
                     client_id: params[:id]).to_json
   end
 
   patch "/clients/:id" do
-    Client.find(params[:id]).update(name: params[:name].split(' ').map{|i| i.capitalize}.join(" ")).to_json
+    Client.find(params[:id]).update(name: params[:name]).to_json
   end
 
   patch "/clients/:client_id/routines/:routine_id" do
     routine = Routine.find(params[:routine_id])
-    string_keys = ["day", "exercise", "exercise_type"]
-    
-    formatted_params = params.map do |key, value| 
-      string_keys.include?(key) ? [key, params[key].split(' ').map{|i| i.capitalize}.join(" ")] : [key, params[key]]
-    end.to_h
-    
-    routine.update(formatted_params.except("client_id", "routine_id")).to_json
+    routine.update(params.except("client_id", "routine_id")).to_json
   end
 end
