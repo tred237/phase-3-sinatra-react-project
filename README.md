@@ -25,14 +25,23 @@ cd phase-3-sinatra-react-project
 bundle install
 ```
 
-<!-- 5. Seed your database and start the server
+## Usage
+
+In your terminal, navigate to the root of your back-end directory and run the following commands.
 ```
 bundle exec rake db:seed
 bundle exec rake db:server
 ```
 
-6. This will run your server on port
-[http://localhost:9292](http://localhost:9292) -->
+This will run your server on port
+[http://localhost:9292](http://localhost:9292)
+
+## Routes
+
+Clients
+```
+http://localhost:9292/clients
+```
 
 
 ## Contributing
