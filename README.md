@@ -1,4 +1,4 @@
-# My Training Catalog Back-End
+# My Personal Training Catalog Back-End
 
 This back uses Ruby and Sinatra to feed the front-end of the [My Training Catalog](https://github.com/tred237/my-app-frontend) app.
 
